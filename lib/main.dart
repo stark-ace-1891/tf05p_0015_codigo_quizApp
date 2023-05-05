@@ -22,6 +22,7 @@ class QuizPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
+            flex: 5,
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -36,21 +37,29 @@ class QuizPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: MaterialButton(
-              onPressed: () {},
-              child: Text(
-                "Verdadero",
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: () {},
+                child: Text(
+                  "Verdadero",
+                ),
+                color: Colors.greenAccent,
               ),
-              color: Colors.greenAccent,
             ),
           ),
           Expanded(
-            child: MaterialButton(
-              onPressed: () {},
-              child: Text(
-                "Verdadero",
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: () {},
+                child: Text(
+                  "Verdadero",
+                ),
+                color: Colors.redAccent,
               ),
-              color: Colors.redAccent,
             ),
           ),
         ],
