@@ -15,8 +15,11 @@ class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff2b2d42),
       appBar: AppBar(
+        backgroundColor: Color(0xff2b2d42),
         title: Text("QuizApp"),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,6 +33,7 @@ class QuizPage extends StatelessWidget {
                   "Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba",
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    color: Colors.white,
                     fontSize: 22,
                   ),
                 ),
