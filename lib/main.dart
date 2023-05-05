@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tf05p_0015_codigo_quizapp/question.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,13 @@ class _QuizPageState extends State<QuizPage> {
     true,
     false,
     true,
+  ];
+
+  List<Question> questions2 = [
+    Question(questionText: "El hombre llego a la luna?", questionAnswer: true),
+    Question(questionText: "Haz almorzado algo?", questionAnswer: true),
+    Question(questionText: "Sientes frío?", questionAnswer: false),
+    Question(questionText: "Vas a salir mañana?", questionAnswer: true),
   ];
 
   List<Icon> scoreKeeper = [];
