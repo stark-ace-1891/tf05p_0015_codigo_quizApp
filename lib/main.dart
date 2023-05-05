@@ -20,20 +20,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   int questionNumber = 0;
 
-  List<String> questions = [
-    "El hombre llego a la luna?",
-    "Haz almorzado algo?",
-    "Sientes frío?",
-    "Vas a salir mañana?",
-  ];
-  List<bool> answers = [
-    true,
-    true,
-    false,
-    true,
-  ];
-
-  List<Question> questions2 = [
+  List<Question> questions = [
     Question(questionText: "El hombre llego a la luna?", questionAnswer: true),
     Question(questionText: "Haz almorzado algo?", questionAnswer: true),
     Question(questionText: "Sientes frío?", questionAnswer: false),
@@ -60,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  questions[questionNumber],
+                  questions[questionNumber].questionText,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -78,7 +65,7 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   print(questionNumber);
                   if (questionNumber < questions.length) {
-                    bool answerCorrect = answers[questionNumber];
+                    bool answerCorrect = questions[questionNumber].questionAnswer;
                     if (answerCorrect == true) {
                       scoreKeeper.add(Icon(
                         Icons.check,
