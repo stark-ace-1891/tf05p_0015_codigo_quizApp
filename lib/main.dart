@@ -25,6 +25,7 @@ class _QuizPageState extends State<QuizPage> {
     "Sientes frío?",
     "Vas a salir mañana?",
   ];
+  List<bool> answers = [];
 
   List<Icon> scoreKeeper = [
     Icon(
