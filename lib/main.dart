@@ -19,6 +19,7 @@ class QuizPage extends StatelessWidget {
         title: Text("QuizApp"),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Center(
