@@ -25,26 +25,14 @@ class _QuizPageState extends State<QuizPage> {
     "Sientes frío?",
     "Vas a salir mañana?",
   ];
-  List<bool> answers = [];
-
-  List<Icon> scoreKeeper = [
-    Icon(
-      Icons.check,
-      color: Colors.greenAccent,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.redAccent,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.greenAccent,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.redAccent,
-    ),
+  List<bool> answers = [
+    true,
+    true,
+    false,
+    true,
   ];
+
+  List<Icon> scoreKeeper = [];
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +68,23 @@ class _QuizPageState extends State<QuizPage> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: () {
-                  if (questionNumber < questions.length - 1) {
-                    questionNumber++;
-                    scoreKeeper.add(Icon(
-                      Icons.close,
-                      color: Colors.redAccent,
-                    ));
+                  print(questionNumber);
+                  if (questionNumber < questions.length) {
+                    bool answerCorrect = answers[questionNumber];
+                    if (answerCorrect == true) {
+                      scoreKeeper.add(Icon(
+                        Icons.check,
+                        color: Colors.greenAccent,
+                      ));
+                    } else {
+                      scoreKeeper.add(Icon(
+                        Icons.close,
+                        color: Colors.redAccent,
+                      ));
+                    }
+                    if (questionNumber < questions.length - 1) {
+                      questionNumber++;
+                    }
                   }
                   setState(() {});
                 },
