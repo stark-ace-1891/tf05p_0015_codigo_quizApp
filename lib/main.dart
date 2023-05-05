@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
 }
 
 class QuizPage extends StatefulWidget {
-
   @override
   State<QuizPage> createState() => _QuizPageState();
 }
@@ -80,10 +79,14 @@ class _QuizPageState extends State<QuizPage> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: () {
-                  questionNumber++;
-                  setState(() {
-                    
-                  });
+                  if (questionNumber < questions.length - 1) {
+                    questionNumber++;
+                    scoreKeeper.add(Icon(
+                      Icons.close,
+                      color: Colors.redAccent,
+                    ));
+                  }
+                  setState(() {});
                 },
                 child: Text(
                   "Verdadero",
