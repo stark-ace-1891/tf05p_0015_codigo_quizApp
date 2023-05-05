@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tf05p_0015_codigo_quizapp/question.dart';
+import 'package:tf05p_0015_codigo_quizapp/quiz_brain.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,14 +18,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  int questionNumber = 0;
-
-  List<Question> questions = [
-    Question(questionText: "El hombre llego a la luna?", questionAnswer: true),
-    Question(questionText: "Haz almorzado algo?", questionAnswer: true),
-    Question(questionText: "Sientes frío?", questionAnswer: false),
-    Question(questionText: "Vas a salir mañana?", questionAnswer: true),
-  ];
+  QuizBrain quizBrain = QuizBrain();
 
   List<Icon> scoreKeeper = [];
 
@@ -47,7 +40,7 @@ class _QuizPageState extends State<QuizPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  questions[questionNumber].questionText,
+                  quizBrain.getQuestionText(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -63,9 +56,8 @@ class _QuizPageState extends State<QuizPage> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: () {
-                  print(questionNumber);
-                  if (questionNumber < questions.length) {
-                    bool answerCorrect = questions[questionNumber].questionAnswer;
+                  // if (questionNumber < quizBrain.questions.length) {
+                    bool answerCorrect = quizBrain.getQuestionAnswer();
                     if (answerCorrect == true) {
                       scoreKeeper.add(Icon(
                         Icons.check,
@@ -77,10 +69,10 @@ class _QuizPageState extends State<QuizPage> {
                         color: Colors.redAccent,
                       ));
                     }
-                    if (questionNumber < questions.length - 1) {
-                      questionNumber++;
-                    }
-                  }
+                    // if (questionNumber < quizBrain.questions.length - 1) {
+                      quizBrain.nextQuestion();
+                    // }
+                  // }
                   setState(() {});
                 },
                 child: Text(
