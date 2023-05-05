@@ -12,6 +12,25 @@ class MyApp extends StatelessWidget {
 }
 
 class QuizPage extends StatelessWidget {
+  List<Icon> scoreKeeper = [
+    Icon(
+      Icons.check,
+      color: Colors.greenAccent,
+    ),
+    Icon(
+      Icons.close,
+      color: Colors.redAccent,
+    ),
+    Icon(
+      Icons.check,
+      color: Colors.greenAccent,
+    ),
+    Icon(
+      Icons.close,
+      color: Colors.redAccent,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +43,13 @@ class QuizPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          const Expanded(
             flex: 5,
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba",
+                  "El hombre llegó a la luna?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -65,6 +84,9 @@ class QuizPage extends StatelessWidget {
                 color: Colors.redAccent,
               ),
             ),
+          ),
+          Row(
+            children: scoreKeeper,
           ),
         ],
       ),
