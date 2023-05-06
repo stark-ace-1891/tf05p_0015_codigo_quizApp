@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:tf05p_0015_codigo_quizapp/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: QuizPage());
+    return const MaterialApp(
+      home: QuizPage(),
+    );
   }
 }
 
 class QuizPage extends StatefulWidget {
+  const QuizPage({super.key});
+
   @override
   State<QuizPage> createState() => _QuizPageState();
 }
@@ -25,12 +32,12 @@ class _QuizPageState extends State<QuizPage> {
   checkAnswer(answer) {
     bool answerCorrect = quizBrain.getQuestionAnswer();
     if (answerCorrect == answer) {
-      scoreKeeper.add(Icon(
+      scoreKeeper.add(const Icon(
         Icons.check,
         color: Colors.greenAccent,
       ));
     } else {
-      scoreKeeper.add(Icon(
+      scoreKeeper.add(const Icon(
         Icons.close,
         color: Colors.redAccent,
       ));
@@ -40,13 +47,32 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {});
   }
 
+  _onCustomAnimationAlertPressed(context) {
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: "RFLUTTER ALERT",
+      desc: "Flutter is more awesome with RFlutter Alert.",
+      buttons: [
+        DialogButton(
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+          child: const Text(
+            "COOL",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        )
+      ],
+    ).show();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff2b2d42),
       appBar: AppBar(
         backgroundColor: Color(0xff2b2d42),
-        title: Text("QuizApp"),
+        title: const Text("QuizApp"),
         centerTitle: true,
       ),
       body: Column(
@@ -60,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
                 child: Text(
                   quizBrain.getQuestionText(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,
                   ),
@@ -73,18 +99,15 @@ class _QuizPageState extends State<QuizPage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
+                colorBrightness: Brightness.dark,
                 onPressed: () {
-                  if (quizBrain.isFInished() == true) {
-                    print("FInalizado");
-                    quizBrain.restart();
-                  }else{
-                    checkAnswer(true);
-                  }
+                  //checkAnswer(true);
+                  _onCustomAnimationAlertPressed(context);
                 },
-                child: Text(
+                color: Colors.greenAccent,
+                child: const Text(
                   "Verdadero",
                 ),
-                color: Colors.greenAccent,
               ),
             ),
           ),
@@ -96,10 +119,10 @@ class _QuizPageState extends State<QuizPage> {
                 onPressed: () {
                   checkAnswer(false);
                 },
-                child: Text(
+                color: Colors.redAccent,
+                child: const Text(
                   "Verdadero",
                 ),
-                color: Colors.redAccent,
               ),
             ),
           ),
