@@ -30,36 +30,44 @@ class _QuizPageState extends State<QuizPage> {
   QuizBrain quizBrain = QuizBrain();
 
   checkAnswer(answer) {
-    bool answerCorrect = quizBrain.getQuestionAnswer();
-    if (answerCorrect == answer) {
-      scoreKeeper.add(const Icon(
-        Icons.check,
-        color: Colors.greenAccent,
-      ));
+    if (quizBrain.isFInished() == true) {
+      _onCustomAnimationAlertPressed(context);
+      quizBrain.restart();
+      scoreKeeper.clear();
     } else {
-      scoreKeeper.add(const Icon(
-        Icons.close,
-        color: Colors.redAccent,
-      ));
+      bool answerCorrect = quizBrain.getQuestionAnswer();
+      if (answerCorrect == answer) {
+        scoreKeeper.add(const Icon(
+          Icons.check,
+          color: Colors.greenAccent,
+        ));
+      } else {
+        scoreKeeper.add(const Icon(
+          Icons.close,
+          color: Colors.redAccent,
+        ));
+      }
+      quizBrain.nextQuestion();
     }
-    quizBrain.nextQuestion();
-
     setState(() {});
   }
 
   _onCustomAnimationAlertPressed(context) {
     Alert(
       context: context,
-      type: AlertType.error,
-      title: "RFLUTTER ALERT",
-      desc: "Flutter is more awesome with RFlutter Alert.",
+      type: AlertType.success,
+      title: "QuizApp",
+      desc: "El Quiz ha finalizado.",
       buttons: [
         DialogButton(
           onPressed: () => Navigator.pop(context),
           width: 120,
           child: const Text(
-            "COOL",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            "Aceptar",
+            style: TextStyle(
+                color: Colors.white,
+                backgroundColor: Colors.blue,
+                fontSize: 20),
           ),
         )
       ],
@@ -99,10 +107,8 @@ class _QuizPageState extends State<QuizPage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
-                colorBrightness: Brightness.dark,
                 onPressed: () {
-                  //checkAnswer(true);
-                  _onCustomAnimationAlertPressed(context);
+                  checkAnswer(true);
                 },
                 color: Colors.greenAccent,
                 child: const Text(
