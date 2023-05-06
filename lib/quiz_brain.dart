@@ -12,15 +12,31 @@ class QuizBrain {
   ];
 
   String getQuestionText() {
-    return _questions[_questionNumber].questionText;
+    if (_questionNumber > _questions.length - 1) {
+      return _questions[_questionNumber - 1].questionText;
+    } else {
+      return _questions[_questionNumber].questionText;
+    }
   }
 
   bool getQuestionAnswer() {
-    return _questions[_questionNumber].questionAnswer;
+    if (_questionNumber > _questions.length - 1) {
+      return _questions[_questionNumber - 1].questionAnswer;
+    } else {
+      return _questions[_questionNumber].questionAnswer;
+    }
+  }
+
+  int getQuestionsLength() {
+    return _questions.length;
+  }
+
+  void getID() {
+    print(_questionNumber);
   }
 
   nextQuestion() {
-    if (_questionNumber < _questions.length - 1) {
+    if (_questionNumber <= _questions.length - 1) {
       _questionNumber++;
     }
   }
@@ -31,7 +47,7 @@ class QuizBrain {
   }
 
   //Reiniciar el quiz
- void restart() {
+  void restart() {
     _questionNumber = 0;
   }
 }

@@ -31,6 +31,21 @@ class _QuizPageState extends State<QuizPage> {
 
   checkAnswer(answer) {
     if (quizBrain.isFInished() == true) {
+      if (scoreKeeper.length < quizBrain.getQuestionsLength()) {
+        quizBrain.nextQuestion();
+        bool answerCorrect = quizBrain.getQuestionAnswer();
+        if (answerCorrect == answer) {
+          scoreKeeper.add(const Icon(
+            Icons.check,
+            color: Colors.greenAccent,
+          ));
+        } else {
+          scoreKeeper.add(const Icon(
+            Icons.close,
+            color: Colors.redAccent,
+          ));
+        }
+      }
       _onCustomAnimationAlertPressed(context);
     } else {
       bool answerCorrect = quizBrain.getQuestionAnswer();
@@ -53,7 +68,7 @@ class _QuizPageState extends State<QuizPage> {
   _onCustomAnimationAlertPressed(context) {
     Alert(
       context: context,
-      type: AlertType.success,
+      type: AlertType.info,
       title: "QuizApp",
       desc: "El Quiz ha finalizado.",
       content: Row(
