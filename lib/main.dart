@@ -18,9 +18,27 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scoreKeeper = [];
+
   QuizBrain quizBrain = QuizBrain();
 
-  List<Icon> scoreKeeper = [];
+  checkAnswer(answer) {
+    bool answerCorrect = quizBrain.getQuestionAnswer();
+    if (answerCorrect == answer) {
+      scoreKeeper.add(Icon(
+        Icons.check,
+        color: Colors.greenAccent,
+      ));
+    } else {
+      scoreKeeper.add(Icon(
+        Icons.close,
+        color: Colors.redAccent,
+      ));
+    }
+    quizBrain.nextQuestion();
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,24 +74,12 @@ class _QuizPageState extends State<QuizPage> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: () {
-                  // if (questionNumber < quizBrain.questions.length) {
-                    bool answerCorrect = quizBrain.getQuestionAnswer();
-                    if (answerCorrect == true) {
-                      scoreKeeper.add(Icon(
-                        Icons.check,
-                        color: Colors.greenAccent,
-                      ));
-                    } else {
-                      scoreKeeper.add(Icon(
-                        Icons.close,
-                        color: Colors.redAccent,
-                      ));
-                    }
-                    // if (questionNumber < quizBrain.questions.length - 1) {
-                      quizBrain.nextQuestion();
-                    // }
-                  // }
-                  setState(() {});
+                  if (quizBrain.isFInished() == true) {
+                    print("FInalizado");
+                    quizBrain.restart();
+                  }else{
+                    checkAnswer(true);
+                  }
                 },
                 child: Text(
                   "Verdadero",
@@ -87,7 +93,9 @@ class _QuizPageState extends State<QuizPage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  checkAnswer(false);
+                },
                 child: Text(
                   "Verdadero",
                 ),
