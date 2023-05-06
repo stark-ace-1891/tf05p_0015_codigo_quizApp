@@ -32,8 +32,6 @@ class _QuizPageState extends State<QuizPage> {
   checkAnswer(answer) {
     if (quizBrain.isFInished() == true) {
       _onCustomAnimationAlertPressed(context);
-      quizBrain.restart();
-      scoreKeeper.clear();
     } else {
       bool answerCorrect = quizBrain.getQuestionAnswer();
       if (answerCorrect == answer) {
@@ -58,9 +56,17 @@ class _QuizPageState extends State<QuizPage> {
       type: AlertType.success,
       title: "QuizApp",
       desc: "El Quiz ha finalizado.",
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: scoreKeeper,
+      ),
       buttons: [
         DialogButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.pop(context);
+            quizBrain.restart();
+            scoreKeeper.clear();
+          },
           width: 120,
           child: const Text(
             "Aceptar",
@@ -132,9 +138,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
             ),
           ),
-          Row(
-            children: scoreKeeper,
-          ),
+          // Row(
+          //   children: scoreKeeper,
+          // ),
         ],
       ),
     );
